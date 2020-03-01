@@ -10,6 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
@@ -21,27 +26,24 @@ public class Livro {
 	private Long id;
 
 	
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	@NotEmpty(message = " O campo nome não pode ser vazio")
 	private String nome;
 	
 	@JsonInclude(Include.NON_NULL)
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message =  "O campo publicação é obrigatorio ")
 	private Date publicacao;
 	
 	@JsonInclude(Include.NON_NULL)
+	@NotEmpty(message = "O campo editora é obrigatorio")
 	private String editora ;
 	
 	@JsonInclude(Include.NON_NULL)
+	@NotEmpty(message = "O campo editora não pode ser vazio ")
+	@Size(max = 1500 , message = "O campo publicação não pode exeder 1500 caracteres" )
 	private String resumo;
 	
-	@JsonInclude(Include.NON_NULL)
+	@JsonInclude(Include.NON_EMPTY)
 	@OneToMany(mappedBy = "livro")
 	private List<Comentario>comentarios;	
 	@ManyToOne
@@ -93,7 +95,14 @@ public class Livro {
 	public Livro(String nome) {
 		this.nome= nome;
 	}
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	
 	
 }

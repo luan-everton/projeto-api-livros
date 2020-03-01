@@ -9,8 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class Comentario {
 
@@ -18,12 +24,19 @@ public class Comentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	
+	@NotEmpty(message = " O campo comentario é obrigatorio")
+	@Size(max = 200 , message = "O campo comentario não pode exeder 200 caracteres.")
+	@JsonProperty("comentario")
 	private String texto;
 	
+	@JsonInclude(Include.NON_NULL)
 	private String usuario;
 	
+	@JsonInclude(Include.NON_NULL)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data;
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="LIVRO_ID")
 	@JsonIgnore
