@@ -33,6 +33,7 @@ public class Autor {
 	@JsonInclude(Include.NON_NULL)
 	@NotEmpty(message ="O campo nacionalidade é obrigatorio ")
 	private String nacionalidade;
+	
 	@OneToMany(mappedBy ="autor")
 	@JsonIgnore
 	private List<Livro> livros;

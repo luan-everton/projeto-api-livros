@@ -54,7 +54,7 @@ public class LivrosResouces {
 	 }
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> buscar (@PathVariable("id")  Long id) {
+	public ResponseEntity<?> buscar (@PathVariable("id")  Long id) { 
 	Optional<Livro> livro = livrosService.buscar(id);
 	
 	CacheControl cacheControl = CacheControl.maxAge(30, TimeUnit.SECONDS);

@@ -20,6 +20,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.gft.LojaLivros.domain.Autor;
 import com.gft.LojaLivros.services.AutoresService;
 
+import io.swagger.annotations.Api;
+@Api(tags ="Livros")
 @RestController
 @RequestMapping("/autores")
 public class AutoresResorce {
