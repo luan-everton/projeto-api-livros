@@ -75,7 +75,7 @@ public class LivrosResouces {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> atualizar (@RequestBody Livro livro,  @PathVariable("id")  Long id) {
-	 System.out.println("teste");
+	
 		livro.setId(id);
 		livrosService.atualizar(livro);
 		
@@ -102,35 +102,4 @@ public class LivrosResouces {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

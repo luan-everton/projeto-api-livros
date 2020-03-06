@@ -30,8 +30,10 @@ public class LivrosService {
 	
 	public Optional<Livro> buscar (Long id) {
 		Optional<Livro> livro = livrosrepository.findById(id);
-		if(livro.isEmpty()) {
+		if(livro.isPresent()) {
+		}else {
 			throw new LivroNaoEncontradoException("O livro não pode ser encontrado.");
+
 		}
 		return livro;
 	}

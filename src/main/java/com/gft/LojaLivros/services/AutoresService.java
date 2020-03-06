@@ -35,7 +35,9 @@ public class AutoresService {
 	
 	public Optional<Autor> buscar (Long id) {
 	Optional<Autor>autor = autoresRepository.findById(id);
-		if(autor.isEmpty()) {
+		if(autor.isPresent()) {
+			
+		} else {
 			throw new AutorNaoEncontradoException("O autor não foi encontrado.");
 		}
 		return autor;
